@@ -67,3 +67,68 @@
   ros_type_name: "sensor_msgs/msg/PointCloud2"
   gz_type_name: "ignition.msgs.PointCloudPacked"
   direction: GZ_TO_ROS
+
+# ----------- sjtu_drone Bridges
+
+# Drone command velocity
+- ros_topic_name: '/sjtu_drone/cmd_vel'
+  gz_topic_name: '/model/sjtu_drone/cmd_vel'
+  ros_type_name: 'geometry_msgs/msg/Twist'
+  gz_type_name: 'ignition.msgs.Twist'
+  direction: ROS_TO_GZ
+
+# Drone takeoff command
+- ros_topic_name: '/sjtu_drone/takeoff'
+  gz_topic_name: '/model/sjtu_drone/takeoff'
+  ros_type_name: 'std_msgs/msg/Empty'
+  gz_type_name: 'ignition.msgs.Empty'
+  direction: ROS_TO_GZ
+
+# Drone land command
+- ros_topic_name: '/sjtu_drone/land'
+  gz_topic_name: '/model/sjtu_drone/land'
+  ros_type_name: 'std_msgs/msg/Empty'
+  gz_type_name: 'ignition.msgs.Empty'
+  direction: ROS_TO_GZ
+
+# Drone IMU
+- ros_topic_name: '/sjtu_drone/imu'
+  gz_topic_name: '/model/sjtu_drone/imu'
+  ros_type_name: 'sensor_msgs/msg/Imu'
+  gz_type_name: 'ignition.msgs.IMU'
+  direction: GZ_TO_ROS
+
+# Drone sonar / range sensor
+- ros_topic_name: '/sjtu_drone/sonar'
+  gz_topic_name: '/model/sjtu_drone/sonar/out'
+  ros_type_name: 'sensor_msgs/msg/Range'
+  gz_type_name: 'ignition.msgs.LaserScan'
+  direction: GZ_TO_ROS
+
+# Drone front camera
+- ros_topic_name: '/sjtu_drone/front/image_raw'
+  gz_topic_name: '/model/sjtu_drone/front/image_raw'
+  ros_type_name: 'sensor_msgs/msg/Image'
+  gz_type_name: 'ignition.msgs.Image'
+  direction: GZ_TO_ROS
+
+# Drone bottom camera
+- ros_topic_name: '/sjtu_drone/bottom/image_raw'
+  gz_topic_name: '/model/sjtu_drone/bottom/image_raw'
+  ros_type_name: 'sensor_msgs/msg/Image'
+  gz_type_name: 'ignition.msgs.Image'
+  direction: GZ_TO_ROS
+
+# Drone GPS position
+- ros_topic_name: '/sjtu_drone/gps/nav'
+  gz_topic_name: '/model/sjtu_drone/gps/nav'
+  ros_type_name: 'sensor_msgs/msg/NavSatFix'
+  gz_type_name: 'ignition.msgs.NavSat'
+  direction: GZ_TO_ROS
+
+# Drone GPS velocity
+- ros_topic_name: '/sjtu_drone/gps/vel'
+  gz_topic_name: '/model/sjtu_drone/gps/vel'
+  ros_type_name: 'geometry_msgs/msg/TwistStamped'
+  gz_type_name: 'ignition.msgs.Twist'
+  direction: GZ_TO_ROS
