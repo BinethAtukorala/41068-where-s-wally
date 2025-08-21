@@ -6,6 +6,18 @@ Worlds are build from [Gazebo Fuel](https://app.gazebosim.org/fuel/models).
 
 ## Installation
 
+### Installation: SJTU Drone
+
+SJTU Drone [Github](https://github.com/NovoG93/sjtu_drone/tree/ros2) repo
+
+```
+cd ~/git && git clone git@github.com:NovoG93/sjtu_drone.git -b ros2
+cd ~/ros2_ws/src && ln -s ~/git/sjtu_drone
+cd .. && rosdep install -r -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO && colcon build --packages-select-regex sjtu*
+```
+
+### Installation: Simulation Starter Package
+
 First install some dependencies:
 
 * If you haven't already, install ROS2 Humble. Follow the instructions here: https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
