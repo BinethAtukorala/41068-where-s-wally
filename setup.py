@@ -17,7 +17,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'spawn_drone = 41068_ignition_bringup.spawn_drone:main'
         ]
     }
 )

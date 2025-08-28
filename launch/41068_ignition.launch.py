@@ -80,42 +80,6 @@ def generate_launch_description():
     #                                   )
     # ld.add_action(drone_state_publisher_node)
 
-    drone_xacro_file_name = "sjtu_drone.urdf.xacro"
-    drone_xacro_file = os.path.join(
-        FindPackageShare('sjtu_drone_description').find('sjtu_drone_description'),
-        "urdf", 
-        drone_xacro_file_name
-    )
-
-    drone_yaml_file_path = os.path.join(
-        FindPackageShare('41068_ignition_bringup').find('41068_ignition_bringup'),
-        "config",
-        "drone.yaml"
-    )
-
-    drone_description_config = xacro.process_file(str(drone_xacro_file), mappings={"params_path": str(drone_yaml_file_path)})
-    drone_desc = drone_description_config.toxml()
-
-    # get ns from yaml
-    with open(drone_yaml_file_path, 'r') as f:
-        yaml_dict = yaml.load(f, Loader=yaml.FullLoader)
-        model_ns = yaml_dict["namespace"]
-    print("namespace: ", model_ns)
-
-    drone_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable="robot_state_publisher",
-        name="robot_state_publisher",
-        namespace=model_ns,
-        parameters=[{
-            "use_sim_time": use_sim_time,
-            "robot_description": drone_desc,
-            "frame_prefix": model_ns + "/"
-        }],
-        arguments=[drone_desc]
-    )
-
-    ld.add_action(drone_state_publisher_node)
 
     # Publish odom -> base_link transform **using robot_localization**
     robot_localization_node = Node(
@@ -160,11 +124,13 @@ def generate_launch_description():
 
     # Spawn drone in Gazebo
     drone_spawner = Node(
-        package='ros_ign_gazebo',
+        package='ros_gz_sim',
         executable='create',
         output='screen',
         parameters=[{'use_sim_time': use_sim_time}],
-        arguments=['-topic', 'simple_drone/robot_description', '-name', model_ns, '-z', '0.4']
+        arguments=[
+            "-file", "/home/bineth/41068_ws/src/41068_ignition_bringup/models/x3/model.sdf",
+            "-z", "0.5"]
     )
     ld.add_action(drone_spawner)
 
