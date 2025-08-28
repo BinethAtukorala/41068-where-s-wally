@@ -6,14 +6,10 @@ Worlds are build from [Gazebo Fuel](https://app.gazebosim.org/fuel/models).
 
 ## Installation
 
-### Installation: SJTU Drone
-
-SJTU Drone [Github](https://github.com/NovoG93/sjtu_drone/tree/ros2) repo
+### Installation: X3 Drone
 
 ```
-cd ~/git && git clone git@github.com:NovoG93/sjtu_drone.git -b ros2
-cd ~/ros2_ws/src && ln -s ~/git/sjtu_drone
-cd .. && rosdep install -r -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO && colcon build --packages-select-regex sjtu*
+ign fuel download -u https://fuel.gazebosim.org/1.0/OpenRobotics/models/X3%20UAV/4
 ```
 
 ### Installation: Simulation Starter Package
